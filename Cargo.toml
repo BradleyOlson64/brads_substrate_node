@@ -1,7 +1,8 @@
 [workspace]
 members = [
     "node",
-    "pallets/template",
+    "pallets/proof_of_existence",
+    "pallets/brads_quadratic_voting",
     "runtime",
 ]
 [profile.release]

@@ -44,7 +44,7 @@ pub use sp_runtime::BuildStorage;
 pub use sp_runtime::{Perbill, Permill};
 
 /// Import the template pallet.
-pub use pallet_template;
+pub use proof_of_existence;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -262,9 +262,15 @@ impl pallet_sudo::Config for Runtime {
 	type Call = Call;
 }
 
+parameter_types! {
+	pub const ReserveAmount: Balance = 1000;
+}
+
 /// Configure the pallet-template in pallets/template.
-impl pallet_template::Config for Runtime {
+impl proof_of_existence::Config for Runtime {
 	type Event = Event;
+	type Token = Balances;
+	type ReserveAmount = ReserveAmount;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
