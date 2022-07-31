@@ -1,5 +1,5 @@
 [package]
-name = "brads_quadratic_voting"
+name = "brads-quadratic-voting"
 version = "4.0.0-dev"
 description = "A custom quadratic voting pallet."
 authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]

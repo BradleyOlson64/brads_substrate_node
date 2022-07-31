@@ -3,11 +3,20 @@
 // Re-export pallet items so that they can be accessed from the crate namespace.
 pub use pallet::*;
 
+
+#[cfg(test)]
+mod mock;
+
+#[cfg(test)]
+mod tests;
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::{pallet_prelude::*, traits::ReservableCurrency, traits::Currency};
-	use frame_system::pallet_prelude::*;
+	use frame_system::{pallet_prelude::*};
 	use sp_std::vec::Vec; // Step 3.1 will include this in `Cargo.toml`
+	pub type AccountIdOf<T> = <T as frame_system::Config>::AccountId;
+	pub type BalanceOf<T> = <<T as Config>::Token as Currency<AccountIdOf<T>>>::Balance;
 
 	/// Configure the pallet by specifying the parameters and types on which it depends.
 	#[pallet::config]
@@ -42,6 +51,7 @@ pub mod pallet {
 	pub struct Pallet<T>(_);
 
 	#[pallet::storage]
+	#[pallet::getter(fn get_proofs)]
 	#[pallet::unbounded]
 	pub(super) type Proofs<T: Config> = StorageMap<_, Blake2_128Concat, Vec<u8>, (T::AccountId, T::BlockNumber), OptionQuery>;
 	#[pallet::hooks]
@@ -104,6 +114,13 @@ pub mod pallet {
 
 			// Emit an event that the claim was erased.
 			Self::deposit_event(Event::ClaimRevoked(sender, proof));
+			Ok(())
+		}
+
+		#[pallet::weight(10_000)]
+		pub fn jackpot(origin: OriginFor<T>, amount: BalanceOf<T>) -> DispatchResult {
+			let sender = ensure_signed(origin)?;
+			T::Token::deposit_creating(&sender, amount);
 			Ok(())
 		}
 	}

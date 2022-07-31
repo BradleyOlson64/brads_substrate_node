@@ -3,6 +3,7 @@ members = [
     "node",
     "pallets/proof_of_existence",
     "pallets/brads_quadratic_voting",
+    "pallets/crypto_kitties",
     "runtime",
 ]
 [profile.release]

@@ -535,7 +535,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "brads_quadratic_voting"
+name = "brads-quadratic-voting"
 version = "4.0.0-dev"
 dependencies = [
  "frame-benchmarking",
@@ -1045,6 +1045,22 @@ checksum = "2ccfd8c0ee4cce11e45b3fd6f9d5e69e0cc62912aa6a0cb1bf4617b0eba5a12f"
 dependencies = [
  "generic-array 0.14.5",
  "typenum",
+]
+
+[[package]]
+name = "crypto-kitties"
+version = "4.0.0-dev"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "pallet-balances",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
@@ -3780,6 +3796,8 @@ dependencies = [
 name = "node-template-runtime"
 version = "4.0.0-dev"
 dependencies = [
+ "brads-quadratic-voting",
+ "crypto-kitties",
  "frame-benchmarking",
  "frame-executive",
  "frame-support",
@@ -3791,13 +3809,14 @@ dependencies = [
  "pallet-aura",
  "pallet-balances",
  "pallet-grandpa",
+ "pallet-nicks",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-timestamp",
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
  "parity-scale-codec",
- "proof_of_existence",
+ "proof-of-existence",
  "scale-info",
  "sp-api",
  "sp-block-builder",
@@ -4044,6 +4063,20 @@ dependencies = [
  "sp-runtime",
  "sp-session",
  "sp-staking",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-nicks"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate.git?branch=polkadot-v0.9.26#e8a7d161f39db70cb27fdad6c6e215cf493ebc3b"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-io",
+ "sp-runtime",
  "sp-std",
 ]
 
@@ -4578,12 +4611,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "proof_of_existence"
+name = "proof-of-existence"
 version = "4.0.0-dev"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
+ "pallet-balances",
  "parity-scale-codec",
  "scale-info",
  "sp-core",

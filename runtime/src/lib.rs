@@ -46,6 +46,10 @@ pub use sp_runtime::{Perbill, Permill};
 /// Import the template pallet.
 pub use proof_of_existence;
 
+pub use brads_quadratic_voting;
+
+pub use crypto_kitties;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -273,6 +277,16 @@ impl proof_of_existence::Config for Runtime {
 	type ReserveAmount = ReserveAmount;
 }
 
+impl brads_quadratic_voting::Config for Runtime {
+	type Event = Event;
+	type Token = Balances;
+	type ReserveAmount = ReserveAmount;
+}
+
+impl crypto_kitties::Config for Runtime {
+	type Event = Event;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -289,7 +303,9 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment,
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
-		TemplateModule: pallet_template,
+		PoePallet: proof_of_existence,
+		BradsQuadraticVoting: brads_quadratic_voting,
+		CryptoKitties: crypto_kitties,
 	}
 );
 
