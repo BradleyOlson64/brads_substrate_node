@@ -21,6 +21,7 @@ fn it_works_for_default_value() {
 		// Read pallet storage and assert an expected result.
 		assert_eq!(POEModule::get_proofs(proof.clone()).unwrap().0, 1);
 		assert_eq!(sender, 1);
+		
 	});
 }
 
